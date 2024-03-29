@@ -1,8 +1,30 @@
-import React from "react";
+import React, { useState } from "react";
+import Papa from "papaparse";
+import {
+  Chart as ChartJS,
+  ArcElement,
+  Tooltip,
+  Legend,
+  CategoryScale,
+  LinearScale,
+  BarElement,
+} from "chart.js";
+import { Bar, Doughnut } from "react-chartjs-2";
 import "./App.css";
 
+ChartJS.register(
+  ArcElement,
+  Tooltip,
+  Legend,
+  CategoryScale,
+  LinearScale,
+  BarElement
+);
+
 function App() {
-  return <div className="App"></div>;
+  const [isFetched, setIsFetched] = useState(false);
+  const [dataX, setDataX] = useState<any>([]);
+
   const changeHandler = (event: React.ChangeEvent<HTMLInputElement>): void => {
     if (event.target.files) {
       Papa.parse(event.target.files[0], {
@@ -26,6 +48,7 @@ function App() {
       });
     }
   };
+
   return (
     <div className="App">
       <input
