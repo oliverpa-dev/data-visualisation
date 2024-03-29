@@ -26,6 +26,37 @@ function App() {
       });
     }
   };
+  return (
+    <div className="App">
+      <input
+        type="file"
+        name="file"
+        accept=".csv"
+        onChange={changeHandler}
+        style={{ display: "block", margin: "10px auto" }}
+      />
+      {isFetched && dataX && (
+        <Bar
+          onClick={() => console.log(dataX)}
+          options={{}}
+          data={{
+            labels: Object.keys(dataX),
+            datasets: [
+              {
+                label: "More than 4 gears",
+                data: Object.values(dataX),
+                backgroundColor: [
+                  "rgb(255, 99, 132)",
+                  "rgb(54, 162, 235)",
+                  "rgb(255, 205, 86)",
+                ],
+              },
+            ],
+          }}
+        />
+      )}
+    </div>
+  );
 }
 
 export default App;
